@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <EnableDefaultItems>false</EnableDefaultItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="XRSharp" Version="0.1.4-*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Adapter.cs" />
+    <Compile Include="Networked.cs" />
+    <Compile Include="NetworkedScene.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\easyrtc.js" />
+    <EmbeddedResource Include="Resources\networked-aframe.min.js" />
+    <EmbeddedResource Include="Resources\socket.io.slim.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Readme.md" />
+  </ItemGroup>
+
+</Project>
