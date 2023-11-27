@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <DefineSilverlight>true</DefineSilverlight>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="XRSharp" Version="0.1.4-*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="Examples\Networked.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="App.xaml.cs" />
+    <Compile Include="Examples\Networked.xaml.cs" />
+    <Compile Include="MainPage.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\XRSharp.CommunityToolkit.Networked\XRSharp.CommunityToolkit.Networked.csproj" />
+  </ItemGroup>
+
+</Project>
