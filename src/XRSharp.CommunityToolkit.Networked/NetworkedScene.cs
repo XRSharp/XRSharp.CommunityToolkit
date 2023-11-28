@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using XRSharp.Components;
+using XRSharp.Controls;
+using XRSharp.Primitives;
 
 namespace XRSharp.CommunityToolkit.Networked;
 
@@ -8,6 +10,7 @@ namespace XRSharp.CommunityToolkit.Networked;
 /// </summary>
 public class NetworkedScene : RootComponent
 {
+    private const string AvatarTemplateId = "avatarTemplate";
     private const string ResourcesPath = "ms-appx:///XRSharp.CommunityToolkit.Networked/Resources";
 
     // todo: load different files for different adapters
@@ -62,18 +65,66 @@ public class NetworkedScene : RootComponent
 
     public bool IsConnected => Interop.ExecuteJavaScriptGetResult<bool>("NAF.connection.isConnected();");
 
+    /// <summary>
+    /// When a user connects, other clients will display it as this avatar template.
+    /// </summary>
+    public FrameworkElement3D Avatar { get; set; } = new Box { SizeX = 0.5, SizeY = 0.5 };
+
     // todo: add onConnect, events
 
     protected override void Init()
     {
         Interop.ExecuteJavaScriptVoid(
             $"{Root.JsElement}.setAttribute('networked-scene', 'serverURL: {ServerURL}; app: {AppName}; room: {Room}; connectOnLoad: {ConnectOnLoad.ToLowerString()}; adapter: {Adapter}; audio: {Audio.ToLowerString()}; video: {Video.ToLowerString()}; debug: {Debug.ToLowerString()};');");
+
+        if (Avatar != null)
+        {
+            Interop.ExecuteJavaScriptVoid($@"
+const template = document.createElement('template');
+template.setAttribute('id', '{AvatarTemplateId}');
+{Root.JsElement}.appendChild(template);
+");
+
+            if (Root.Content is Panel3D panel)
+            {
+                Avatar.Loaded += (_, __) =>
+                {
+                    Interop.ExecuteJavaScriptVoid($@"
+const template = document.getElementById('{AvatarTemplateId}');
+const el = {Avatar.JsElement}.cloneNode(true);
+template.content.appendChild(el);
+");
+                    panel.Children.Remove(Avatar);
+                    SetAvatarToCamera();
+                };
+
+                panel.Children.Add(Avatar);
+            }
+            else
+            {
+                // todo:
+                Interop.ExecuteJavaScriptVoid($@"
+const template = document.getElementById('{AvatarTemplateId}');
+const el = document.createElement('a-box');
+template.content.appendChild(el);
+");
+
+                SetAvatarToCamera();
+            }
+        }
+    }
+
+    private void SetAvatarToCamera()
+    {
+        Interop.ExecuteJavaScriptVoid($"{Root.JsElement}.camera.el.setAttribute('networked', 'attachTemplateToLocal: false; template: #{AvatarTemplateId};');");
     }
 
     protected override void Remove()
     {
         Interop.ExecuteJavaScriptVoid($@"
+{Root.JsElement}.camera.el.removeAttribute('networked');
 {Root.JsElement}.removeAttribute('networked-scene');
+document.getElementById('{AvatarTemplateId}')?.remove();
 ");
     }
 

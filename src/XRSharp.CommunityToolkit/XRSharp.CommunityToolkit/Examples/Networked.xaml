@@ -4,12 +4,12 @@
       xmlns:n="clr-namespace:XRSharp.CommunityToolkit.Networked;assembly=XRSharp.CommunityToolkit.Networked"
       xmlns:xr="http://xrsharp.io/xr">
 
-    <xr:Root3D>
+    <xr:Root3D xr:OrbitControls.Enabled="True" xr:OrbitControls.Target="0 1 -2">
         <xr:Root3D.Environment>
             <xr:BasicEnvironment BackgroundColor="LightBlue"/>
         </xr:Root3D.Environment>
         <xr:Root3D.Components>
-            <n:NetworkedScene Debug="True"/>
+            <n:NetworkedScene Debug="True" ServerURL="http://localhost:8080/"/>
         </xr:Root3D.Components>
         <xr:Canvas3D>
             <xr:Plane Rotation="-90 0 0"
