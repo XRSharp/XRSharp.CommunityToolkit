@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using CSHTML5.Internal;
+using System.Linq;
 using XRSharp.Components;
 
 namespace XRSharp.CommunityToolkit.Networked;
@@ -6,6 +7,8 @@ namespace XRSharp.CommunityToolkit.Networked;
 public class Networked : Component<UIElement3D>
 {
     protected override string ComponentName => "networked";
+
+    private string _elementId;
 
     /// <summary>
     /// A css selector to a template tag.
@@ -29,6 +32,18 @@ public class Networked : Component<UIElement3D>
     {
         Initialized = true;
 
+        if (AssociatedElement is FrameworkElement3D element)
+        {
+            if (element.IsLoaded)
+            {
+                SaveElementId();
+            }
+            else
+            {
+                element.Loaded += (_, __) => SaveElementId();
+            }
+        }
+
         // workaround to set component only after the networked-scene is initialized
         var networkedScene = Root3D.Current.Components.OfType<NetworkedScene>().FirstOrDefault();
         if (networkedScene != null)
@@ -44,5 +59,10 @@ public class Networked : Component<UIElement3D>
         }
     }
 
-    protected override string GetProperties() => $"'template: {TemplateSelector}; attachTemplateToLocal: {AttachTemplateToLocal.ToLowerString()}; persistent: {Persistent.ToLowerString()};'";
+    private void SaveElementId()
+    {
+        _elementId = ((INTERNAL_HtmlDomElementReference)Interop.GetDiv(AssociatedElement)).UniqueIdentifier;
+    }
+
+    protected override string GetProperties() => $"'template: {TemplateSelector}; attachTemplateToLocal: {AttachTemplateToLocal.ToLowerString()}; persistent: {Persistent.ToLowerString()}; networkId: {_elementId};'";
 }

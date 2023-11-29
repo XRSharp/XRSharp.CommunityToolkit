@@ -68,7 +68,7 @@ public class NetworkedScene : RootComponent
     /// <summary>
     /// When a user connects, other clients will display it as this avatar template.
     /// </summary>
-    public FrameworkElement3D Avatar { get; set; } = new Box { SizeX = 0.5, SizeY = 0.5, Color = RandomColor.Generate() };
+    public FrameworkElement3D Avatar { get; set; } = new Box { SizeX = 0.3, SizeY = 0.5, SizeZ = 0.3, Color = RandomColor.Generate() };
 
     // todo: add onConnect, events
 
