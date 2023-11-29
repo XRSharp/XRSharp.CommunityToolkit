@@ -63,12 +63,12 @@ public class NetworkedScene : RootComponent
     /// </summary>
     public bool Debug { get; set; } = false;
 
-    public bool IsConnected => Interop.ExecuteJavaScriptGetResult<bool>("NAF.connection.isConnected();");
+    public bool IsConnected => IsInitialized && Interop.ExecuteJavaScriptGetResult<bool>("NAF.connection.isConnected();");
 
     /// <summary>
     /// When a user connects, other clients will display it as this avatar template.
     /// </summary>
-    public FrameworkElement3D Avatar { get; set; } = new Box { SizeX = 0.5, SizeY = 0.5 };
+    public FrameworkElement3D Avatar { get; set; } = new Box { SizeX = 0.5, SizeY = 0.5, Color = RandomColor.Generate() };
 
     // todo: add onConnect, events
 
@@ -80,9 +80,15 @@ public class NetworkedScene : RootComponent
         if (Avatar != null)
         {
             Interop.ExecuteJavaScriptVoid($@"
+var assets = {Root.JsElement}.querySelector('a-assets');
 const template = document.createElement('template');
 template.setAttribute('id', '{AvatarTemplateId}');
-{Root.JsElement}.appendChild(template);
+assets.appendChild(template);
+
+const defaultTemplate = document.createElement('template');
+defaultTemplate.setAttribute('id', 'defaultTemplate');
+defaultTemplate.content.appendChild(document.createElement('a-entity'));
+assets.appendChild(defaultTemplate);
 ");
 
             if (Root.Content is Panel3D panel)
@@ -116,15 +122,20 @@ template.content.appendChild(el);
 
     private void SetAvatarToCamera()
     {
-        Interop.ExecuteJavaScriptVoid($"{Root.JsElement}.camera.el.setAttribute('networked', 'attachTemplateToLocal: false; template: #{AvatarTemplateId};');");
+        Interop.ExecuteJavaScriptVoid($@"
+var camera = {Root.JsElement}.camera.el;
+camera.parentEl.setAttribute('networked', 'template: #defaultTemplate');
+camera.setAttribute('networked', 'attachTemplateToLocal: false; template: #{AvatarTemplateId};');
+");
     }
 
     protected override void Remove()
     {
         Interop.ExecuteJavaScriptVoid($@"
-{Root.JsElement}.camera.el.removeAttribute('networked');
-{Root.JsElement}.removeAttribute('networked-scene');
-document.getElementById('{AvatarTemplateId}')?.remove();
+var scene = {Root.JsElement}
+scene.camera.el.removeAttribute('networked');
+scene.removeAttribute('networked-scene');
+scene.getElementById('{AvatarTemplateId}')?.remove();
 ");
     }
 

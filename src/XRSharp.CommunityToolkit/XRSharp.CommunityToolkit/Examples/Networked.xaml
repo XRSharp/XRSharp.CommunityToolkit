@@ -16,6 +16,16 @@
                       SizeX="100"
                       SizeY="100"
                       Color="LightGray"/>
+            <xr:Box Name="box"
+                    xr:Canvas3D.Y="1"
+                    xr:Canvas3D.Z="-2"
+                    SizeX="0.5"
+                    SizeY="0.5"
+                    SizeZ="0.5">
+                <xr:Box.Components>
+                    <n:Networked/>
+                </xr:Box.Components>
+            </xr:Box>
         </xr:Canvas3D>
     </xr:Root3D>
 </Page>
