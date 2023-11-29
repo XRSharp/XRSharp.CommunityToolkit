@@ -5,9 +5,11 @@ VisualStudioVersion = 17.9.34310.174
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XRSharp.CommunityToolkit.Networked", "XRSharp.CommunityToolkit.Networked\XRSharp.CommunityToolkit.Networked.csproj", "{A14AF71E-E150-4F35-8FA5-404F6120081B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XRSharp.CommunityToolkit.Browser", "XRSharp.CommunityToolkit\XRSharp.CommunityToolkit.Browser\XRSharp.CommunityToolkit.Browser.csproj", "{88B7BB0E-F737-4761-9423-BD629184D0A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XRSharp.CommunityToolkit.Browser", "XRSharp.CommunityToolkit\XRSharp.CommunityToolkit.Browser\XRSharp.CommunityToolkit.Browser.csproj", "{88B7BB0E-F737-4761-9423-BD629184D0A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XRSharp.CommunityToolkit", "XRSharp.CommunityToolkit\XRSharp.CommunityToolkit\XRSharp.CommunityToolkit.csproj", "{999CB164-4178-47AA-A3AF-548DD8A1588B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XRSharp.CommunityToolkit", "XRSharp.CommunityToolkit\XRSharp.CommunityToolkit\XRSharp.CommunityToolkit.csproj", "{999CB164-4178-47AA-A3AF-548DD8A1588B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XRSharp.CommunityToolkit.Croquet", "XRSharp.CommunityToolkit.Croquet\XRSharp.CommunityToolkit.Croquet.csproj", "{763237AF-8ABC-4944-818F-348184FD3973}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{999CB164-4178-47AA-A3AF-548DD8A1588B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{999CB164-4178-47AA-A3AF-548DD8A1588B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{999CB164-4178-47AA-A3AF-548DD8A1588B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{763237AF-8ABC-4944-818F-348184FD3973}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{763237AF-8ABC-4944-818F-348184FD3973}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{763237AF-8ABC-4944-818F-348184FD3973}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{763237AF-8ABC-4944-818F-348184FD3973}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

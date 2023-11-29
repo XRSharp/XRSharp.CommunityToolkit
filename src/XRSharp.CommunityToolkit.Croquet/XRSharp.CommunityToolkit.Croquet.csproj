@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <EnableDefaultItems>false</EnableDefaultItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="XRSharp" Version="0.1.4-*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Croquet.cs" />
+    <Compile Include="MultiUser.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\aframe-croquet-component.js" />
+    <EmbeddedResource Include="Resources\croquet.min.js" />
+  </ItemGroup>
+
+</Project>

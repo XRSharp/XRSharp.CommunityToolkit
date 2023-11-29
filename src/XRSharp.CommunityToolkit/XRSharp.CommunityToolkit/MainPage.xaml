@@ -9,6 +9,7 @@
           mc:Ignorable="d">
 
     <Grid>
-        <examples:Networked/>
+        <!--<examples:Networked/>-->
+        <examples:Croquet/>
     </Grid>
 </sdk:Page>

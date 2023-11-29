@@ -14,6 +14,9 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="Examples\Croquet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Examples\Networked.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -24,11 +27,13 @@
 
   <ItemGroup>
     <Compile Include="App.xaml.cs" />
+    <Compile Include="Examples\Croquet.xaml.cs" />
     <Compile Include="Examples\Networked.xaml.cs" />
     <Compile Include="MainPage.xaml.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\XRSharp.CommunityToolkit.Croquet\XRSharp.CommunityToolkit.Croquet.csproj" />
     <ProjectReference Include="..\..\XRSharp.CommunityToolkit.Networked\XRSharp.CommunityToolkit.Networked.csproj" />
   </ItemGroup>
 

@@ -1,0 +1,35 @@
+﻿<Page x:Class="XRSharp.CommunityToolkit.Examples.Croquet"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mu="clr-namespace:XRSharp.CommunityToolkit.Croquet;assembly=XRSharp.CommunityToolkit.Croquet"
+      xmlns:xr="http://xrsharp.io/xr">
+
+    <xr:Root3D xr:OrbitControls.Enabled="True" xr:OrbitControls.Target="0 1 -2">
+        <xr:Root3D.Environment>
+            <xr:BasicEnvironment BackgroundColor="LightBlue"/>
+        </xr:Root3D.Environment>
+        <xr:Root3D.Components>
+            <mu:Croquet SpawnPoint="0 1.2 0">
+                <mu:Croquet.Avatar>
+                    <xr:Cylinder Radius="0.2"/>
+                </mu:Croquet.Avatar>
+            </mu:Croquet>
+        </xr:Root3D.Components>
+        <xr:Canvas3D>
+            <xr:Plane Rotation="-90 0 0"
+                      SizeX="100"
+                      SizeY="100"
+                      Color="LightGray"/>
+            <xr:Box Name="box"
+                    xr:Canvas3D.Y="1"
+                    xr:Canvas3D.Z="-2"
+                    SizeX="0.5"
+                    SizeY="0.5"
+                    SizeZ="0.5">
+                <xr:Box.Components>
+                    <!--<mu:MultiUser/>-->
+                </xr:Box.Components>
+            </xr:Box>
+        </xr:Canvas3D>
+    </xr:Root3D>
+</Page>
