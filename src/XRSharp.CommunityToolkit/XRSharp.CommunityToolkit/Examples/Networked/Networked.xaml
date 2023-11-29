@@ -9,7 +9,13 @@
             <xr:BasicEnvironment BackgroundColor="LightBlue"/>
         </xr:Root3D.Environment>
         <xr:Root3D.Components>
-            <n:NetworkedScene Debug="True" ServerURL="http://localhost:8080/"/>
+            <n:NetworkedScene Debug="True" ServerURL="http://localhost:8080/">
+                <n:NetworkedScene.Avatar>
+                    <xr:Canvas3D>
+                        <xr:Box SizeX="0.5" SizeY="0.7" SizeZ="0.5"/>
+                    </xr:Canvas3D>
+                </n:NetworkedScene.Avatar>
+            </n:NetworkedScene>
         </xr:Root3D.Components>
         <xr:Canvas3D>
             <xr:Plane Rotation="-90 0 0"

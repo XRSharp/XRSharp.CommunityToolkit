@@ -1,0 +1,12 @@
+{
+    "name": "networked-example",
+    "version": "1.0.0",
+    "description": "Multi-user example",
+    "scripts": {
+      "start": "node easyrtc-server.js"
+    },
+    "author": "XR#",
+    "dependencies": {
+      "networked-aframe": "0.11.1"
+    }
+  }

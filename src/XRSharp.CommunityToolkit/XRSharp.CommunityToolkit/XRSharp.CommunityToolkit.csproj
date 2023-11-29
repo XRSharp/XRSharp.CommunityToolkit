@@ -14,7 +14,7 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="Examples\Networked.xaml">
+    <Page Include="Examples\Networked\Networked.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainPage.xaml">
@@ -24,8 +24,15 @@
 
   <ItemGroup>
     <Compile Include="App.xaml.cs" />
-    <Compile Include="Examples\Networked.xaml.cs" />
+    <Compile Include="Examples\Networked\Networked.xaml.cs" />
     <Compile Include="MainPage.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Examples\Networked\Readme.md" />
+    <None Include="Examples\Networked\Server\easyrtc-server.js" />
+    <None Include="Examples\Networked\Server\package-lock.json" />
+    <None Include="Examples\Networked\Server\package.json" />
   </ItemGroup>
 
   <ItemGroup>
