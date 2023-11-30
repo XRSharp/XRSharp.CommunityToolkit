@@ -1,0 +1,62 @@
+name: Build XR Sharp
+env:
+  xrsharp-package-source-myget: 'https://www.myget.org/F/xrsharp/api/v2/package'
+  nuget: 'https://api.nuget.org/v3/index.json'
+  package-version: '0.1.4'
+  suffix: 'preview'  
+on:
+  push:
+    branches:
+      - master
+jobs:
+  Build:
+    #We should not run these steps on the forks by default.
+    if: github.repository_owner == 'XRSharp'
+    runs-on: windows-latest
+    steps:
+      - uses: microsoft/setup-msbuild@v1.1
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v3.x
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.0.*'
+      - name: Fill vars
+        id: vars
+        run: |
+          function GetLatestStableVersion($packageName) {
+            return (nuget list $packageName -Source ${{ env.nuget }} | ? { $_ -match "^$packageName\s+(.*)" } | ForEach { $_.split(" ")[1] })
+          }
+
+          function GetNextVersion($version) {
+            if ([string]::IsNullOrEmpty($version)) {
+                return "${{ env.package-version }}"
+            }
+
+            $versionArray = $version.Split('.')
+            $versionArray[1] = [int]$versionArray[1] + 1
+            $newVersion = $versionArray -join '.'
+            return $newVersion
+          }
+
+          $suffix = "${{ env.suffix }}"
+          $latestXRSharpPreviewVersion = nuget list -Source ${{ env.xrsharp-package-source-myget }} -Prerelease | ? { $_ -match "^XRSharp\s+(.*)" } | ForEach { $_.split(" ")[1] }
+          $latestCommunityToolkitStableVersion = GetLatestStableVersion "XRSharp.CommunityToolkit"
+          $nextVersionCommunityToolkit = GetNextVersion $latestCommunityToolkitStableVersion
+          echo "xrsharp-version=$latestXRSharpPreviewVersion" >> $env:GITHUB_OUTPUT
+          echo "community-toolkit-version=$nextVersionCommunityToolkit-${{ env.suffix }}-$(date +'%Y-%m-%d-%H%M%S')-${{ env.GITHUB_SHA_SHORT }}" >> $env:GITHUB_OUTPUT
+      - name: Print vars
+        run: |
+          echo "XRSharp Version: ${{ steps.vars.outputs.xrsharp-version }}"
+          echo "XRSharp.CommunityToolkit Version: ${{ steps.vars.outputs.community-toolkit-version }}"
+      - name: Clone XRSharp.CommunityToolkit repo
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+          path: '.\XRSharp.CommunityToolkit'      
+      - name: Build the XRSharp.CommunityToolkit package
+        working-directory: XRSharp.CommunityToolkit\build\
+        run: .\build-nuget-package-XRSharp-CommunityToolkit-cicd.bat "${{ steps.vars.outputs.community-toolkit-version }}" "${{ steps.vars.outputs.xrsharp-version }}"
+      - name: Upload the package to the XRSharp feed
+        if: github.ref == 'refs/heads/master'
+        run: |
+          dotnet nuget push "XRSharp.CommunityToolkit\build\output\*.nupkg" -k ${{ secrets.MYGET_XRSHARP_TOKEN }} -s ${{ env.xrsharp-package-source-myget }}
