@@ -15,6 +15,7 @@
     <Compile Include="Adapter.cs" />
     <Compile Include="Networked.cs" />
     <Compile Include="NetworkedScene.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomColor.cs" />
   </ItemGroup>
 
