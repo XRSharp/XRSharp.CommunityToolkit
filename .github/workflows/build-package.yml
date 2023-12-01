@@ -1,4 +1,4 @@
-name: Build XR Sharp
+name: Build XRSharp.CommunityToolkit
 env:
   package-source-myget: 'https://www.myget.org/F/xrsharp/api/v2/package'
   nuget: 'https://api.nuget.org/v3/index.json'
@@ -7,7 +7,7 @@ env:
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   Build:
     #We should not run these steps on the forks by default.
@@ -57,6 +57,6 @@ jobs:
         working-directory: XRSharp.CommunityToolkit\build\
         run: .\build-nuget-package-XRSharp-CommunityToolkit-cicd.bat "${{ steps.vars.outputs.community-toolkit-version }}" "${{ steps.vars.outputs.xrsharp-version }}"
       - name: Upload the package to the XRSharp feed
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         run: |
           dotnet nuget push "XRSharp.CommunityToolkit\build\output\*.nupkg" -k ${{ secrets.MYGET_XRSHARP_TOKEN }} -s ${{ env.package-source-myget }}
