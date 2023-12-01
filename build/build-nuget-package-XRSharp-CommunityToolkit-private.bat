@@ -10,11 +10,11 @@ rem Define the escape character for colored text
 for /F %%a in ('"prompt $E$S & echo on & for %%b in (1) do rem"') do set "ESC=%%a"
 
 rem Define the "%PackageVersion%" variable:
-set /p PackageVersion="%ESC%[92mXRSharp.CommunityToolkit version:%ESC%[0m 0.1.4-private-"
+set /p PackageVersion="%ESC%[92mXRSharp.CommunityToolkit version:%ESC%[0m 0.1.5-private-"
 
-set PackageVersion="0.1.4-private-%PackageVersion%"
+set PackageVersion="0.1.5-private-%PackageVersion%"
 
-set XRSharpVersion="0.1.4-preview-2023-11-29-105504-f5d71aac"
+set XRSharpVersion="0.1.5-preview-2023-12-01-142631-09e72790"
 
 call "build-nuget-package-XRSharp-CommunityToolkit-cicd.bat" %PackageVersion% %XRSharpVersion%
 

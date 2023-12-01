@@ -11,11 +11,11 @@ set "currentdatetime=%currentdatetime: =0%"
 
 rem If argument 1 is not given, use default value for PackageVersion:
 set "PackageVersion=%~1"
-if not defined PackageVersion set "PackageVersion=0.1.4-private-%currentdatetime%"
+if not defined PackageVersion set "PackageVersion=0.1.5-private-%currentdatetime%"
 
 rem If argument 2 is not given, use default value for XRSharpVersion:
 set "XRSharpVersion=%~2"
-if not defined XRSharpVersion set "XRSharpVersion=0.1.4-preview-2023-11-29-105504-f5d71aac"
+if not defined XRSharpVersion set "XRSharpVersion=0.1.5-preview-2023-12-01-142631-09e72790"
 
 if not exist "nuspec/XRSharp.CommunityToolkit.nuspec" (
     echo Wrong working directory. Please navigate to the folder that contains the BAT file before executing it.
