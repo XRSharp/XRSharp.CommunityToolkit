@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows;
 using XRSharp.Components;
 using XRSharp.Controls;
 using XRSharp.Primitives;
@@ -70,6 +71,40 @@ public class NetworkedScene : RootComponent
     /// </summary>
     public FrameworkElement3D Avatar { get; set; } = new Box { SizeX = 0.3, SizeY = 0.5, SizeZ = 0.3, Color = RandomColor.Generate() };
 
+    #region IsMicrophoneEnabled
+    public bool IsMicrophoneEnabled
+    {
+        get => (bool)GetValue(IsMicrophoneEnabledProperty);
+        set => SetValue(IsMicrophoneEnabledProperty, value);
+    }
+
+    public static readonly DependencyProperty IsMicrophoneEnabledProperty =
+        DependencyProperty.Register(nameof(IsMicrophoneEnabled), typeof(bool), typeof(NetworkedScene), new PropertyMetadata(true, OnIsMicrophoneEnabledChanged));
+
+    private static void OnIsMicrophoneEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var component = (NetworkedScene)d;
+
+        if (component.Audio && component.IsInitialized)
+        {
+            component.UpdateMicState();
+        }
+    }
+
+    private void UpdateMicState()
+    {
+        Interop.ExecuteJavaScriptVoid($@"
+if (NAF.connection.isConnected()) {{
+  NAF.connection.adapter.enableMicrophone({IsMicrophoneEnabled.ToLowerString()});
+}}
+else {{
+  document.body.addEventListener('clientConnected', function (evt) {{
+    NAF.connection.adapter.enableMicrophone({IsMicrophoneEnabled.ToLowerString()})
+  }});
+}}");
+    }
+    #endregion
+
     // todo: add onConnect, events
 
     protected override void Init()
@@ -119,6 +154,11 @@ template.content.appendChild(el);
 
                 SetAvatarToCamera();
             }
+        }
+
+        if (Audio)
+        {
+            UpdateMicState();
         }
     }
 
