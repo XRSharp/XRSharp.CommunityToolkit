@@ -9,7 +9,7 @@
             <xr:BasicEnvironment BackgroundColor="LightBlue"/>
         </xr:Root3D.Environment>
         <xr:Root3D.Components>
-            <n:NetworkedScene Debug="True" ServerURL="http://localhost:8080/">
+            <n:NetworkedScene Debug="True" Audio="True" Adapter="easyrtc" ServerURL="http://localhost:8080/">
                 <n:NetworkedScene.Avatar>
                     <xr:Canvas3D>
                         <xr:Box SizeX="0.5" SizeY="0.7" SizeZ="0.5"/>

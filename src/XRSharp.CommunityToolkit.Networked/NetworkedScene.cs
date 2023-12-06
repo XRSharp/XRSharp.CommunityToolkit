@@ -33,7 +33,7 @@ public class NetworkedScene : RootComponent
 
     /// <summary>
     /// Unique room name. Can be multiple per app. Spaces are not allowed.
-    /// There can be multiple rooms per app and clients can only connect to clients in the same app & room.
+    /// There can be multiple rooms per app and clients can only connect to clients in the same app and room.
     /// </summary>
     public string Room { get; set; } = "default";
 
@@ -98,6 +98,8 @@ assets.appendChild(defaultTemplate);
                     Interop.ExecuteJavaScriptVoid($@"
 const template = document.getElementById('{AvatarTemplateId}');
 const el = {Avatar.JsElement}.cloneNode(true);
+if ({Audio.ToLowerString()})
+  el.setAttribute('networked-audio-source', '');
 template.content.appendChild(el);
 ");
                     panel.Children.Remove(Avatar);

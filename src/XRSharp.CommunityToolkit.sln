@@ -5,9 +5,14 @@ VisualStudioVersion = 17.9.34310.174
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XRSharp.CommunityToolkit.Networked", "XRSharp.CommunityToolkit.Networked\XRSharp.CommunityToolkit.Networked.csproj", "{A14AF71E-E150-4F35-8FA5-404F6120081B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XRSharp.CommunityToolkit.Browser", "XRSharp.CommunityToolkit\XRSharp.CommunityToolkit.Browser\XRSharp.CommunityToolkit.Browser.csproj", "{88B7BB0E-F737-4761-9423-BD629184D0A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XRSharp.CommunityToolkit.Browser", "XRSharp.CommunityToolkit\XRSharp.CommunityToolkit.Browser\XRSharp.CommunityToolkit.Browser.csproj", "{88B7BB0E-F737-4761-9423-BD629184D0A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XRSharp.CommunityToolkit", "XRSharp.CommunityToolkit\XRSharp.CommunityToolkit\XRSharp.CommunityToolkit.csproj", "{999CB164-4178-47AA-A3AF-548DD8A1588B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XRSharp.CommunityToolkit", "XRSharp.CommunityToolkit\XRSharp.CommunityToolkit\XRSharp.CommunityToolkit.csproj", "{999CB164-4178-47AA-A3AF-548DD8A1588B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B4133832-4382-4ED6-8641-FBA844D6538D}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
