@@ -22,6 +22,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\easyrtc.js" />
     <EmbeddedResource Include="Resources\networked-aframe.min.js" />
+    <EmbeddedResource Include="Resources\networked-hand-tracking.js" />
     <EmbeddedResource Include="Resources\socket.io.slim.js" />
   </ItemGroup>
 

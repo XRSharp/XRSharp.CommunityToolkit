@@ -20,6 +20,7 @@ public class NetworkedScene : RootComponent
         new() { Type = ResourceType.Script, Source =  $"{ResourcesPath}/socket.io.slim.js" },
         new() { Type = ResourceType.Script, Source =  $"{ResourcesPath}/easyrtc.js" },
         new() { Type = ResourceType.Script, Source =  $"{ResourcesPath}/networked-aframe.min.js" },
+        new() { Type = ResourceType.Script, Source =  $"{ResourcesPath}/networked-hand-tracking.js" },
     };
 
     /// <summary>
@@ -63,6 +64,13 @@ public class NetworkedScene : RootComponent
     /// Turn on/off Networked-Aframe debug logs.
     /// </summary>
     public bool Debug { get; set; } = false;
+
+    /// <summary>
+    /// Whether user hands should be visible to others.
+    /// Currently only dots model is supported.
+    /// Default is <see langword="false"/>.
+    /// </summary>
+    public bool HandTrackingEnabled { get; set; }
 
     public bool IsConnected => IsInitialized && Interop.ExecuteJavaScriptGetResult<bool>("NAF.connection.isConnected();");
 
@@ -154,6 +162,29 @@ template.content.appendChild(el);
 
                 SetAvatarToCamera();
             }
+        }
+
+        if (HandTrackingEnabled)
+        {
+            Interop.ExecuteJavaScriptVoid(@$"
+var assets = {Root.JsElement}.querySelector('a-assets');
+const handJointTemplate = document.createElement('template');
+handJointTemplate.setAttribute('id', 'hand-joint-template');
+
+const jointSphere = document.createElement('a-sphere');
+jointSphere.setAttribute('radius', 0.01);
+
+handJointTemplate.content.appendChild(jointSphere);
+assets.appendChild(handJointTemplate);
+
+const handElements = document.querySelectorAll('[hand-tracking-controls]');
+
+for (var i = 0; i < handElements.length; i++) {{
+  var hand = handElements[i];
+  hand.setAttribute('hand-tracking-controls', 'modelStyle: dots');
+  hand.setAttribute('networked-hand-tracking', '');
+}}
+");
         }
 
         if (Audio)
