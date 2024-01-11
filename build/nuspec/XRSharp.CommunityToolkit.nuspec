@@ -8,7 +8,7 @@
     <repository type="git" url="$RepositoryUrl$" />
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Collection of components and helpers for XR#</description>
-    <copyright>Copyright (c) 2023, Userware. All rights reserved.</copyright>
+    <copyright>Copyright (c) 2024, Userware. All rights reserved.</copyright>
     <tags>webassembly csharp xaml wasm dotnet .net C# javascript html html5 mono webxr extendedreality vr ar mr web3d XR WebXR 3D OpenSilver Oculus Meta Quest Virtual Reality Augmented Mixed XRSharp Community Toolkit</tags>
     <icon>images\XRSharp_icon.png</icon>
     <!--<licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>-->
