@@ -2,7 +2,7 @@ name: Build XRSharp.CommunityToolkit
 env:
   package-source-myget: 'https://www.myget.org/F/xrsharp/api/v2/package'
   nuget: 'https://api.nuget.org/v3/index.json'
-  package-version: '0.1.7'
+  package-version: '0.1.8'
   suffix: 'preview'  
 on:
   push:

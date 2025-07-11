@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <NoXamlPreprocessor>True</NoXamlPreprocessor>
-    <OpenSilverType>6</OpenSilverType>
+    <OpenSilverType>7</OpenSilverType>
     <PublishTrimmed>true</PublishTrimmed>
     <PublishIISAssets>true</PublishIISAssets>
     <DisableImplicitNamespaceImports>True</DisableImplicitNamespaceImports>
@@ -12,9 +12,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="OpenSilver.WebAssembly" Version="3.3.0-preview-2025-07-07-132018-3a1ef60c" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0" PrivateAssets="all" />
-    <PackageReference Include="XRSharp" Version="0.1.7-*" />
   </ItemGroup>
 
   <ItemGroup>

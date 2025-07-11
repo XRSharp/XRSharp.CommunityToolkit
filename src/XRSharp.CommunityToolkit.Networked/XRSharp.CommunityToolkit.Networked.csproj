@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="XRSharp" Version="0.1.7-*" />
+    <PackageReference Include="XRSharp" Version="0.1.8-preview-2025-07-11-092834-ca515795" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,10 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\easyrtc.js" />
-    <EmbeddedResource Include="Resources\networked-aframe.min.js" />
-    <EmbeddedResource Include="Resources\networked-hand-tracking.js" />
-    <EmbeddedResource Include="Resources\socket.io.slim.js" />
+    <Resource Include="Resources\easyrtc.js" />
+    <Resource Include="Resources\networked-aframe.min.js" />
+    <Resource Include="Resources\networked-hand-tracking.js" />
+    <Resource Include="Resources\socket.io.slim.js" />
   </ItemGroup>
 
   <ItemGroup>
